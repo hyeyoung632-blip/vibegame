@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 빙고 게임</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 닉네임 입력 화면 -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <h1>🎯 실시간 빙고 게임</h1>
+            <div class="login-form">
+                <input 
+                    type="text" 
+                    id="nicknameInput" 
+                    placeholder="닉네임을 입력하세요" 
+                    maxlength="10"
+                    autocomplete="off"
+                >
+                <button id="joinBtn" class="join-btn">입장하기</button>
+            </div>
+            <p class="login-hint">같은 주소로 접속한 친구들과 함께 플레이하세요!</p>
+        </div>
+    </div>
+
+    <!-- 게임 화면 -->
+    <div id="gameScreen" class="game-screen hidden">
+        <!-- 상단 헤더 -->
+        <header class="game-header">
+            <div class="header-left">
+                <h1>🎯 빙고 게임</h1>
+                <div class="my-info">
+                    <span id="myNickname" class="nickname"></span>
+                    <span id="hostBadge" class="host-badge hidden">방장</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="current-number-display">
+                    <span class="label">현재 번호:</span>
+                    <span id="currentNumber" class="number">-</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 메인 게임 영역 -->
+        <div class="main-content">
+            <!-- 왼쪽: 내 빙고판 -->
+            <div class="my-board-section">
+                <h2>내 빙고판</h2>
+                <div id="myBoard" class="bingo-board my-board"></div>
+                
+                <!-- 방장 전용 버튼 영역 -->
+                <div id="hostControls" class="host-controls hidden">
+                    <button id="startGameBtn" class="control-btn start-btn">게임 시작</button>
+                    <button id="drawNumberBtn" class="control-btn draw-btn hidden">번호 뽑기</button>
+                    <button id="restartGameBtn" class="control-btn restart-btn hidden">다시 시작</button>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 참가자 현황 -->
+            <div class="players-section">
+                <h2>참가자 현황</h2>
+                <div id="playersList" class="players-list"></div>
+            </div>
+        </div>
+
+        <!-- 하단: 호출된 번호 목록 -->
+        <div class="called-numbers-section">
+            <h3>호출된 번호</h3>
+            <div id="calledNumbers" class="called-numbers-list"></div>
+        </div>
+    </div>
+
+    <!-- 빙고 완료 모달 -->
+    <div id="bingoModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>🎉 빙고 완료! 🎉</h2>
+            <p id="winnerMessage" class="winner-message"></p>
+            <button id="closeModalBtn" class="close-btn">확인</button>
+        </div>
+    </div>
+
+    <!-- 다른 플레이어 보드 모달 -->
+    <div id="playerBoardModal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="modalPlayerName"></h2>
+            <div id="modalPlayerBoard" class="bingo-board modal-board"></div>
+            <button id="closeBoardModalBtn" class="close-btn">닫기</button>
+        </div>
+    </div>
+
+    <!-- Socket.IO 클라이언트 라이브러리 -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
+
+

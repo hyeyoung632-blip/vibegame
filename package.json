@@ -1,0 +1,19 @@
+{
+  "name": "vibegame",
+  "version": "1.0.0",
+  "description": "실시간 멀티플레이어 빙고 게임",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["bingo", "game", "socket.io", "multiplayer"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1"
+  }
+}
+
+
